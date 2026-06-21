@@ -1,0 +1,165 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String   @default("Admin")
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSettings {
+  id             String @id @default("default")
+  siteName       String @default("Nickwal Studios")
+  tagline        String @default("Idea Clicks")
+  subtitle       String @default("Create. Shoot. Design.")
+  introText      String @default("We create visual stories, brand films, reels, websites and digital systems that make ideas click.")
+  whatsappNumber String @default("+919876543210")
+  phone          String @default("+919876543210")
+  email          String @default("hello@nickwalstudios.com")
+  location       String @default("India")
+  instagramUrl   String @default("")
+  facebookUrl    String @default("")
+  youtubeUrl     String @default("")
+  linkedinUrl    String @default("")
+  googleMapsUrl  String @default("")
+  metaDesc       String @default("Nickwal Studios — Premium Creative Studio for Video, Photography, Ads, Reels, Branding, Websites & Bots.")
+}
+
+model DesignSettings {
+  id               String @id @default("default")
+  fontFamily       String @default("Space Grotesk")
+  headingFont      String @default("Space Grotesk")
+  bodyFont         String @default("Inter")
+  accentColor      String @default("#c9a84c")
+  textColor        String @default("#ffffff")
+  bgColor          String @default("#050505")
+  buttonColor      String @default("#c9a84c")
+  buttonTextColor  String @default("#000000")
+  headerStyle      String @default("transparent")
+  borderRadius     String @default("12")
+  containerWidth   String @default("1400")
+  sectionMarginY   String @default("120")
+  sectionPaddingX  String @default("24")
+  heroOverlay      String @default("0.4")
+  heroHeight       String @default("100vh")
+  heroTextPosition String @default("center")
+}
+
+model BrandingSettings {
+  id              String @id @default("default")
+  headerLogoUrl   String @default("")
+  footerLogoUrl   String @default("")
+  faviconUrl      String @default("")
+  adminLogoUrl    String @default("")
+  showreelUrl     String @default("")
+  introVideoUrl   String @default("")
+}
+
+model HeroSlide {
+  id          String   @id @default(cuid())
+  videoUrl    String
+  posterUrl   String?
+  title       String   @default("Nickwal Studios")
+  subtitle    String   @default("Idea Clicks")
+  ctaText1    String   @default("View Work")
+  ctaLink1    String   @default("/work")
+  ctaText2    String   @default("Book Now")
+  ctaLink2    String   @default("/contact")
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model ServiceCategory {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  description String?
+  imageUrl    String?
+  videoUrl    String?
+  sortOrder   Int           @default(0)
+  isActive    Boolean       @default(true)
+  items       ServiceItem[]
+  createdAt   DateTime      @default(now())
+}
+
+model ServiceItem {
+  id         String          @id @default(cuid())
+  name       String
+  categoryId String
+  category   ServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  sortOrder  Int             @default(0)
+  isActive   Boolean         @default(true)
+}
+
+model PortfolioItem {
+  id          String   @id @default(cuid())
+  title       String
+  category    String
+  mediaType   String   @default("image")
+  mediaUrl    String
+  externalUrl String?
+  thumbnailUrl String?
+  description String?
+  isFeatured  Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model CaseStudy {
+  id         String   @id @default(cuid())
+  problem    String
+  solution   String
+  result     String
+  imageUrl   String?
+  isFeatured Boolean  @default(true)
+  sortOrder  Int      @default(0)
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+}
+
+model PageContent {
+  id      String @id @default(cuid())
+  slug    String @unique
+  title   String
+  content String
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String
+  service   String?
+  budget    String?
+  message   String?
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+}
+
+model MediaAsset {
+  id        String   @id @default(cuid())
+  filename  String
+  url       String
+  type      String
+  size      Int?
+  createdAt DateTime @default(now())
+}
+
+model BackupLog {
+  id        String   @id @default(cuid())
+  filename  String
+  size      Int?
+  createdAt DateTime @default(now())
+}
