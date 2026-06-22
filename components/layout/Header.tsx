@@ -21,7 +21,7 @@ function Logo() {
         className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
       />
       {/* Text — touching N */}
-      <div className="flex flex-col leading-none justify-center -ml-2">
+      <div className="flex flex-col leading-none justify-center -ml-10">
         <span
           className="text-lg md:text-xl font-light tracking-[0.08em] leading-none"
           style={{
