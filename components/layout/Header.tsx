@@ -21,7 +21,7 @@ function Logo() {
         className="h-20 md:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
       />
       {/* Text RIGHT SIDE */}
-      <div className="flex flex-col leading-none justify-center -ml-1">
+      <div className="flex flex-col leading-none justify-center -ml-14">
         <span
           className="text-lg md:text-xl font-light tracking-[0.08em] leading-none"
           style={{
