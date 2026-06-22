@@ -19,8 +19,32 @@ function HeroSection() {
   const ref = useRef(null)
   const [textVisible, setTextVisible] = useState(false)
   const [scrollLocked, setScrollLocked] = useState(true)
+  const [slides, setSlides] = useState<{id: string, videoUrl: string}[]>([])
+  const [currentSlide, setCurrentSlide] = useState(0)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], [0, 150])
+
+  // Fetch slides from database
+  useEffect(() => {
+    fetch('/api/hero')
+      .then(r => r.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          const active = data.filter((s: { isActive: boolean }) => s.isActive)
+          if (active.length > 0) setSlides(active)
+        }
+      })
+      .catch(() => {})
+  }, [])
+
+  // Auto-switch slides every 6 seconds
+  useEffect(() => {
+    if (slides.length <= 1) return
+    const timer = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % slides.length)
+    }, 6000)
+    return () => clearInterval(timer)
+  }, [slides.length])
 
   useEffect(() => {
     let scrollCount = 0
@@ -100,17 +124,33 @@ function HeroSection() {
 
   return (
     <section ref={ref} className="relative h-screen overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background — Slideshow */}
       <motion.div style={{ y }} className="absolute inset-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source src="/uploads/c7e66389-33e9-4961-8cb4-a670145488ee.mp4" type="video/mp4" />
-        </video>
+        {slides.length > 0 ? (
+          slides.map((slide, idx) => (
+            <video
+              key={slide.id}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+              style={{ opacity: idx === currentSlide ? 1 : 0 }}
+            >
+              <source src={slide.videoUrl} type="video/mp4" />
+            </video>
+          ))
+        ) : (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/uploads/c7e66389-33e9-4961-8cb4-a670145488ee.mp4" type="video/mp4" />
+          </video>
+        )}
       </motion.div>
 
       {/* Overlay */}
