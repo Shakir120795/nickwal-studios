@@ -13,15 +13,16 @@ const navLinks = [
 
 function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-0 group">
-      {/* Red Diamond N — use black bg image, blends with dark site */}
+    <Link href="/" className="flex items-start gap-0 group">
+      {/* Red Diamond N */}
       <img
         src="/uploads/ad66040a-2be3-4093-a323-4d92a2bdfeed.png"
         alt="N"
         className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+        style={{ marginTop: '2px' }}
       />
       {/* Text — touching N */}
-      <div className="flex flex-col leading-none justify-center -ml-24">
+      <div className="flex flex-col leading-none justify-center" style={{ marginLeft: '-38px' }}>
         <span
           className="text-lg md:text-xl font-light tracking-[0.08em] leading-none"
           style={{
