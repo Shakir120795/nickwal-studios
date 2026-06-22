@@ -30,7 +30,7 @@ export default function Footer() {
               alt="N"
               className="h-20 md:h-24 w-auto object-contain"
             />
-            <div className="flex flex-col leading-none justify-center -ml-3">
+            <div className="flex flex-col leading-none justify-center -ml-8">
               <span
                 className="text-lg md:text-xl font-light tracking-[0.08em] leading-none"
                 style={{
