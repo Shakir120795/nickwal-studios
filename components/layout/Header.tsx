@@ -14,14 +14,16 @@ const navLinks = [
 function Logo() {
   return (
     <Link href="/" className="flex items-center gap-0 group">
-      {/* Red Diamond N */}
-      <img
-        src="/uploads/acf4fb8f-1472-45f3-a133-c0f5c057d321.png"
-        alt="N"
-        className="h-20 md:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-      />
-      {/* Text RIGHT SIDE */}
-      <div className="flex flex-col leading-none justify-center -ml-14">
+      {/* Red Diamond N — clip right black space */}
+      <div className="h-12 md:h-14 w-9 md:w-11 overflow-hidden flex-shrink-0">
+        <img
+          src="/uploads/acf4fb8f-1472-45f3-a133-c0f5c057d321.png"
+          alt="N"
+          className="h-full w-auto max-w-none object-cover object-left transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+      {/* Text — touching N */}
+      <div className="flex flex-col leading-none justify-center">
         <span
           className="text-lg md:text-xl font-light tracking-[0.08em] leading-none"
           style={{
