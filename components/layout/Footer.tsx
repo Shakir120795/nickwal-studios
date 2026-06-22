@@ -3,7 +3,6 @@
 import Link from 'next/link'
 
 const legalLinks = [
-  { href: '/about', label: 'Who We Are' },
   { href: '/privacy-policy', label: 'Privacy' },
   { href: '/terms', label: 'Terms' },
   { href: '/disclaimer', label: 'Disclaimer' },
@@ -24,14 +23,13 @@ export default function Footer() {
         {/* Top */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
           {/* Logo */}
-          <Link href="/" className="flex items-start gap-0">
+          <Link href="/" className="flex items-center gap-0">
             <img
-              src="/uploads/ad66040a-2be3-4093-a323-4d92a2bdfeed.png"
+              src="/uploads/6fb6424c-33d2-4518-be44-466a950ca6b8.png"
               alt="N"
-              className="h-12 md:h-14 w-auto object-contain"
-              style={{ marginTop: '2px' }}
+              className="h-14 md:h-16 w-auto object-contain"
             />
-            <div className="flex flex-col leading-none justify-center" style={{ marginLeft: '-38px' }}>
+            <div className="flex flex-col leading-none justify-center">
               <span
                 className="text-lg md:text-xl font-light tracking-[0.08em] leading-none"
                 style={{

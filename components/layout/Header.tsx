@@ -8,21 +8,19 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/work', label: 'Work' },
+  { href: '/about', label: 'Who We Are' },
   { href: '/contact', label: 'Contact' },
 ]
 
 function Logo() {
   return (
-    <Link href="/" className="flex items-start gap-0 group">
-      {/* Red Diamond N */}
+    <Link href="/" className="flex items-center gap-0 group">
       <img
-        src="/uploads/ad66040a-2be3-4093-a323-4d92a2bdfeed.png"
+        src="/uploads/6fb6424c-33d2-4518-be44-466a950ca6b8.png"
         alt="N"
-        className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-        style={{ marginTop: '2px' }}
+        className="h-14 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
       />
-      {/* Text — touching N */}
-      <div className="flex flex-col leading-none justify-center" style={{ marginLeft: '-38px' }}>
+      <div className="flex flex-col leading-none justify-center">
         <span
           className="text-lg md:text-xl font-light tracking-[0.08em] leading-none"
           style={{
@@ -60,37 +58,25 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
   }, [isMobileMenuOpen])
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? 'bg-bg/95 backdrop-blur-xl border-b border-border'
-            : 'bg-transparent'
+          isScrolled ? 'bg-bg/95 backdrop-blur-xl border-b border-border' : 'bg-transparent'
         }`}
       >
         <div className="container-custom flex items-center justify-between h-20">
           <Logo />
-
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <Link
@@ -101,40 +87,22 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="btn-primary !py-2.5 !px-6 !text-xs"
-            >
+            <Link href="/contact" className="btn-primary !py-2.5 !px-6 !text-xs">
               Book Now
             </Link>
           </nav>
-
-          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden relative z-50 w-10 h-10 flex flex-col justify-center items-center gap-1.5"
             aria-label="Toggle menu"
           >
-            <span
-              className={`w-6 h-[2px] bg-white transition-all duration-300 ${
-                isMobileMenuOpen ? 'rotate-45 translate-y-[5px]' : ''
-              }`}
-            />
-            <span
-              className={`w-6 h-[2px] bg-white transition-all duration-300 ${
-                isMobileMenuOpen ? 'opacity-0' : ''
-              }`}
-            />
-            <span
-              className={`w-6 h-[2px] bg-white transition-all duration-300 ${
-                isMobileMenuOpen ? '-rotate-45 -translate-y-[5px]' : ''
-              }`}
-            />
+            <span className={`w-6 h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-[5px]' : ''}`} />
+            <span className={`w-6 h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+            <span className={`w-6 h-[2px] bg-white transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-[5px]' : ''}`} />
           </button>
         </div>
       </header>
 
-      {/* Mobile Full-Screen Overlay Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -161,16 +129,8 @@ export default function Header() {
                   </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <Link
-                  href="/contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="btn-primary mt-4"
-                >
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
+                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="btn-primary mt-4">
                   Book Now
                 </Link>
               </motion.div>

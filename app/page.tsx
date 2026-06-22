@@ -186,6 +186,24 @@ function HeroSection() {
         </motion.div>
       </div>
 
+      {/* Slide Dots */}
+      {slides.length > 1 && (
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`rounded-full transition-all duration-300 ${
+                idx === currentSlide
+                  ? 'w-8 h-2 bg-accent'
+                  : 'w-2 h-2 bg-white/30 hover:bg-white/60'
+              }`}
+              aria-label={`Slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+      )}
+
       {/* Scroll indicator — shows when text is NOT visible */}
       {!textVisible && (
         <motion.div
