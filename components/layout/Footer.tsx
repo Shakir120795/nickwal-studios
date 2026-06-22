@@ -26,11 +26,11 @@ export default function Footer() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-0">
             <img
-              src="/uploads/97e25e8c-29fd-4f1e-8720-fd5773c3ccba.png"
+              src="/uploads/acf4fb8f-1472-45f3-a133-c0f5c057d321.png"
               alt="N"
               className="h-20 md:h-24 w-auto object-contain"
             />
-            <div className="flex flex-col leading-none justify-center -ml-8">
+            <div className="flex flex-col leading-none justify-center -ml-1">
               <span
                 className="text-lg md:text-xl font-light tracking-[0.08em] leading-none"
                 style={{
