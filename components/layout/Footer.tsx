@@ -24,7 +24,7 @@ export default function Footer() {
         {/* Top */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1.5">
+          <Link href="/" className="flex items-center gap-0">
             <img
               src="/uploads/97e25e8c-29fd-4f1e-8720-fd5773c3ccba.png"
               alt="N"

@@ -13,7 +13,7 @@ const navLinks = [
 
 function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-1.5 group">
+    <Link href="/" className="flex items-center gap-0 group">
       {/* Red Diamond N */}
       <img
         src="/uploads/97e25e8c-29fd-4f1e-8720-fd5773c3ccba.png"
