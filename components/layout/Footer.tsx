@@ -3,7 +3,7 @@
 import Link from 'next/link'
 
 const legalLinks = [
-  { href: '/about', label: 'About' },
+  { href: '/about', label: 'Who We Are' },
   { href: '/privacy-policy', label: 'Privacy' },
   { href: '/terms', label: 'Terms' },
   { href: '/disclaimer', label: 'Disclaimer' },
